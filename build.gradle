@@ -8,12 +8,8 @@ group = 'org.example'
 version = '0.0.1-SNAPSHOT'
 description = 'backendRh'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
+// Removendo o bloco toolchain para evitar erro de JDK não encontrado.
+// Se quiser garantir Java 17, faça isso pelo Dockerfile.
 repositories {
     mavenCentral()
 }
