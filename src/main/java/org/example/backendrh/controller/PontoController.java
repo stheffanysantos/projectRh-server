@@ -17,25 +17,41 @@ public class PontoController {
 
     // Registrar ponto
     @PostMapping("/registrar/{funcionarioId}")
-    public ResponseEntity<Ponto> registrar(@PathVariable String funcionarioId) throws Exception {
-        return ResponseEntity.ok(pontoService.registrarPonto(funcionarioId));
+    public ResponseEntity<Ponto> registrar(@PathVariable String funcionarioId) {
+        try {
+            return ResponseEntity.ok(pontoService.registrarPonto(funcionarioId));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     // Listar pontos por funcionário
     @GetMapping("/funcionario/{funcionarioId}")
-    public ResponseEntity<List<Ponto>> listarPorFuncionario(@PathVariable String funcionarioId) throws Exception {
-        return ResponseEntity.ok(pontoService.listarPorFuncionario(funcionarioId));
+    public ResponseEntity<List<Ponto>> listarPorFuncionario(@PathVariable String funcionarioId) {
+        try {
+            return ResponseEntity.ok(pontoService.listarPorFuncionario(funcionarioId));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(List.of());
+        }
     }
 
     // Listar todos os registros
     @GetMapping
-    public ResponseEntity<List<Ponto>> listarTodos() throws Exception {
-        return ResponseEntity.ok(pontoService.listarTodos());
+    public ResponseEntity<List<Ponto>> listarTodos() {
+        try {
+            return ResponseEntity.ok(pontoService.listarTodos());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(List.of());
+        }
     }
 
     // Contador de pontos por funcionário (para cards)
     @GetMapping("/funcionario/{funcionarioId}/contagem")
-    public ResponseEntity<Integer> contarPontos(@PathVariable String funcionarioId) throws Exception {
-        return ResponseEntity.ok(pontoService.contarPorFuncionario(funcionarioId));
+    public ResponseEntity<Integer> contarPontos(@PathVariable String funcionarioId) {
+        try {
+            return ResponseEntity.ok(pontoService.contarPorFuncionario(funcionarioId));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(0);
+        }
     }
 }
